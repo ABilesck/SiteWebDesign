@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form method="POST", action="../DAO/comunidade/Incluir.php">
+        
+        <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome"/>
+        <br/>
+        <label for="desc">Descrição: </label>
+        <input type="text" name="desc" id="desc"/>
+        <br/>
+        <label for="Tema">Tema:</label>
+
+        <select name="tema" id="tema">
+          <option value="Java">Java</option>
+          <option value="C#">C#</option>
+          <option value="C">C</option>
+          <option value="C++">C++</option>
+          <option value="js">Js</option>
+        </select> 
+        <br/>
+        <input type="submit"/>
+        
+    
+    </form>
+
+</body>
+</html>
