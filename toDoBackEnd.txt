@@ -1,9 +1,0 @@
-database
-
-perfil
-
-comunidade
-
-post
-
-repostaDoPost
