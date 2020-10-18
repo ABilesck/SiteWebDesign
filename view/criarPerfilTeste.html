@@ -4,102 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styleRegister.css">
+    <link rel="stylesheet" href="./assets/css/stylesComum.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/gif" href="./assets/img/favicon.png">
 </head>
 
 <body>
-    <form class="formRegister" method="POST" , action="../DAO/perfil/incluirPerfil.php">
+    <form class="formRegister" method="POST", action="../DAO/perfil/incluirPerfil.php" >
         <div class="card">
             <div class="card-top">
                 <img class="imgLogin" src="./assets/img/CodificandoLogo.png" alt="Logo">
                 <h2 class="titulo">Codificando</h2>
                 <p>Cadastro</p>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="perfil  Register">Nome de Perfil</label>
-                    <input type="text" name="perfilRegister" class="form-control" id="perfilRegister" required>
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="">Usuário</label>
-                    <input type="text" name="usuarioRegister" class="form-control" id="usuarioRegister" required>
-                </div>
-                <div class="form-group col-md-1">
-                    <label for="idade">Idade</label>
-                    <input type="number" class="form-control" id="idade" name="idade">
-                </div>
+    
+            <div class="card-group">
+                <label for="nome">Usuário</label>
+                <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu usuário" required>
+            </div>
+    
+            <div class="card-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label for="passwordRegister">Senha</label>
-                    <input type="password" name="passwordRegister" class="form-control" id="passwordRegister"
-                        placeholder="Digite sua senha">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="passwordRegisterConfirmation">Confirme a sua senha</label>
-                    <input type="password" class="form-control" id="passwordRegisterConfirmation"
-                        placeholder="Digite a mesma senha">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="uf">UF</label>
-                    <select id="uf" name="uf" class="form-control">
-                        <option selected>Escolha...</option>
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>
-                    </select>
-                </div>
+            <div class="form-group card-group">
+                <label for="bio">Biografia</label>
+                <textarea class="form-control" name="bio" id="bio" rows="5"></textarea>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="emailRegister">Email</label>
-                    <input type="email" name="emailRegister" class="form-control" id="emailRegister" required>
-                </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="termCheck" id="termCheck" required>
+                <label class="form-check-label" for="termCheck">
+                    "Eu li e concordo com os <a href="#">termos</a> de uso"
+                </label>
             </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="termCheck" id="termCheck" required>
-                    <label class="form-check-label" for="termCheck">
-                        "Eu li e concordo com os <a href="#">termos</a> de uso"
-                    </label>
-                </div>
-            </div>
-            <div class="card-group btn">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-                <button type="button" value="voltar" class="btn btn-primary">Voltar</button>
+    
+            <div class="botoes">
+                <input class="botao"  type="submit" value="Cadastrar"></input>
+                <a href="./visualizarComunidade.php">
+                    <input class="botao"  type="button" value="Página Inícial"></input>
+                </a>
             </div>
         </div>
     </form>
 </body>
 
+<footer class="ftr">
+    <p>This site is an academic project</p>
+    <p>Copyright © 2020 - All rights reserved - Codificando</p>
+</footer>
 </html>
+

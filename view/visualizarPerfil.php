@@ -27,6 +27,8 @@ $url = 'http://localhost/sitewebdesign/view/visualizarComunidade.php?com=';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/stylesComum.css">
     <title>Document</title>
 </head>
 <body>
@@ -69,7 +71,11 @@ $url = 'http://localhost/sitewebdesign/view/visualizarComunidade.php?com=';
         ?> -->
 
     </table>
-    
-    
+
+
+    <footer class="ftr">
+        <p>This site is an academic project</p>
+        <p>Copyright © 2020 - All rights reserved - Codificando</p>
+    </footer>   
 </body>
 </html>
