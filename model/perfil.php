@@ -12,6 +12,10 @@
         public function __construct($db)
         {
             $this->conn = $db;
+            $this->id = 0;
+            $this->nome = "";
+            $this->bio = "";
+            $this->senha = "";
         }
 
         public function create()
@@ -144,10 +148,15 @@
             'senha' => $this->senha
           );
   
-          return $resposta;
+        }else{
+          $resposta = array(
+            'id' => 0,
+            'nome' => "",
+            'bio' => "",
+            'senha' => ""
+          );
         }
-        printf("Erro :%s\n", $stmt->error);
-        return false;
+        return $resposta;
         
         
       }

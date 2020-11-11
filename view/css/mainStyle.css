@@ -1,0 +1,248 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: lightskyblue;
+}
+nav{
+    background: orange;
+    height: 100px;
+    width: 100%;
+}
+.logo{
+    margin-left: 100px;
+    margin-top: 8px;
+    width: 130px;
+    
+}
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 100px;
+    margin:  0 5px;
+}
+nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+a.active, a:hover{
+    background: darkorange;
+    transition: .5s;
+}
+.checkbtn{
+    font-size: 50px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+@media (max-width: 952px){
+    label.logo{
+        font-size: 25px;
+        padding-left: 35px;
+    }
+    nav ul li a{
+        font-size: 16px;
+
+    }
+}
+@media (max-width: 858px)
+{
+    .checkbtn{
+        display: block;
+    }
+
+    ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: orange;
+        top: 100px;
+        left: -100%;
+        z-index: 1;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+
+    }
+    nav ul li a{
+        font-size: 20px;
+    }
+
+    a:hover, a.active{
+        background: none;
+        color: #555555
+    }
+    .fundo{
+        z-index: 0;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
+    }
+}
+
+.fundo{
+    width: 350px;
+    background: #fff;
+    padding: 50px;
+    margin: 30px auto;
+    border-radius: 30px;
+    position: relative;
+}
+
+.titulo h1{
+    clear: #535274;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 41px;
+}
+.titulo h3{
+    clear: #535274;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.form , .formItem{
+    width: 100%;
+}
+
+.searchBox
+{
+    padding: 15px 40px;
+    box-sizing: border-box;
+    background: #ebeef1;
+    border:  0px;
+    outline: none;
+    border-radius: 30px;
+    align-content: center;
+}
+
+.formItem .input{
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    background: #ebeef1;
+    border:  0px;
+    outline: none;
+    border-radius: 30px;
+    align-content: center;
+}
+
+.formItem .input.message{
+    height: 125px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    resize: none;
+}
+
+.btnPrimario{
+    width: 100%;
+    background: orange;
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.btnPrimario :hover{
+    background: darkorange;
+}
+.btnSecundario :hover{
+    background: rgb(218, 120, 0);
+}
+
+.btnSecundario{
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    background: darkorange;
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+.btnPesquisa{
+    background: darkorange;
+    text-align: center;
+    color: #fff;
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+.btnPesquisa :hover{
+    background: rgb(218, 120, 0);
+}
+/*rgb(218, 120, 0)*/
+
+
+.fas{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+
+.formItem{
+    position: relative;
+}
+
+.formItem .fas{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #9a99aa;
+}
+
+.post{
+
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin: 10px 0px;
+    background-color: whitesmoke;
+
+}
+
+.postText{
+    color: black;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 3px 0px;
+    font-weight: bold;
+}
+.postLink{
+    color: black;
+}
+.postLink:hover{
+    background-color: #d5d5d5;
+}

@@ -1,9 +1,8 @@
 <?php
 
     $nome = $_POST['nome'];
-    //$bio = 'minha primeira bio';
+    $bio = 'minha primeira bio';
     $senha = $_POST['senha'];
-    $bio = $_POST['bio'];
 
     include_once '../../config/Banco.php';
     include_once '../../model/Perfil.php';

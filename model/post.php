@@ -86,4 +86,48 @@
              where tblPerfil.id_perfil = ?';
         }
 
+        public function TodosOsPosts($perfil)
+        {
+            $query = 'SELECT * FROM tblpost
+             INNER JOIN tblperfisdacomunidade on tblpost.comunidade = tblperfisdacomunidade.comunidade
+              INNER JOIN tblperfil on tblpost.perfil = tblperfil.id_perfil
+               INNER JOIN tblcomunidade on tblpost.comunidade = tblcomunidade.id_comunidade
+                where tblperfisdacomunidade.perfil = ? ';
+
+            $stmt = $this->conn->prepare($query);
+             // Bind ID
+             $stmt->bindParam(1, $perfil);
+             // Execute query
+             $stmt->execute();
+             
+             $num = $stmt->rowCount();
+     
+             if($num > 0)
+             {
+                 $Posts = array();
+                 $Posts['posts'] = array();
+     
+                 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                 {
+                     extract($row);
+     
+                     $item = array(
+     
+                         'idAutor' => $row['id_perfil'],
+                         'autor' => $row['usuario'],
+                         'bioAutor' => $row['bio'],
+                         'texto' => $row['texto'],
+                         'idComunidade' => $row['id_comunidade'],
+                         'comunidade' => $row['nome'],
+                         'tema' => $row['tema'],
+                         'descricao' => $row['descricao']
+                     );
+     
+                     array_push($Posts['posts'], $item);
+                 }
+     
+                 return $Posts['posts'];
+                }
+            }
+        //1 
     }

@@ -41,3 +41,25 @@ add foreign key (perfil) references tblPerfil(id_perfil);
 alter table tblPost
 add foreign key (comunidade) references tblComunidade(id_comunidade);
 
+--selects
+
+select * from tblPerfil where id_perfil = ?
+
+select * from tblPerfil where nome LIKE ?
+
+select * from tblComunidade where id_comunidade = ?
+
+select * from tblComunidade where nome LIKE ?
+
+select * from tblComunidade where tema LIKE ?
+
+select * from tblPerfisDaComunidade Inner JOIN tblPerfil on tblPerfisDaComunidade.perfil = tblPerfil.id_perfil
+LEFT JOIN tblComunidade on tblPerfisDaComunidade.comunidade = tblComunidade.id_comunidade
+where tblPerfisDaComunidade.perfil = ?
+
+select * from tblPost INNER JOIN tblPerfil on tblPost.perfil = tblPerfil.id_perfil 
+INNER JOIN tblComunidade on tblPost.comunidade = tblComunidade.id_comunidade 
+where tblPost.perfil = ?
+
+select * from produto RIGHT JOIN marca on produto.id_produto = marca.id_marca
+
