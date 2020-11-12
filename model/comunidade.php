@@ -48,6 +48,80 @@
         return $stmt;
         }
 
+        public function PesquisarPorNome()
+        {
+              $query = 'SELECT
+                id_comunidade,
+                nome,
+                descricao,
+                tema 
+              FROM '.$this->nomeTabela .
+            '  Where 
+            nome LIKE ?';
+
+            $stmt = $this->conn->prepare($query);
+            // Bind ID
+            $stmt->bindParam(1, $this->nome);
+            // Execute query
+            $stmt->execute();
+
+            $Resultado = array();
+            $Resultado['comunidades'] = array();
+            // Set properties
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              extract($row);
+      
+              $item = array(
+                'idComunidade' => $row['id_comunidade'],
+                'comunidade' => $row['nome'],
+                'tema' => $row['tema'],
+                'descricao' => $row['descricao']
+              );
+      
+              array_push($Resultado['comunidades'], $item);
+            }
+
+            return $Resultado['comunidades'];
+          }
+
+          public function PesquisarPorTema()
+        {
+              $query = 'SELECT
+                id_comunidade,
+                nome,
+                descricao,
+                tema 
+              FROM '.$this->nomeTabela .
+            '  Where 
+            tema LIKE ?';
+
+            $stmt = $this->conn->prepare($query);
+            // Bind ID
+            $stmt->bindParam(1, $this->nome);
+            // Execute query
+            $stmt->execute();
+
+            $Resultado = array();
+            $Resultado['comunidades'] = array();
+            // Set properties
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              extract($row);
+      
+              $item = array(
+                'idComunidade' => $row['id_comunidade'],
+                'comunidade' => $row['nome'],
+                'tema' => $row['tema'],
+                'descricao' => $row['descricao']
+              );
+      
+              array_push($Resultado['comunidades'], $item);
+            }
+
+            return $Resultado['comunidades'];
+          }
+
         public function read_by_name()
         {
             $query = 'SELECT

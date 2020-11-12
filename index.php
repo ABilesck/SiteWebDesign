@@ -35,8 +35,8 @@
                 <img src="./view/imagem/CodificandoLogo3.png" class="logo">
                 <ul>
                     <li>
-                    <form action="" method="post">
-                        <input type="text" placeholder="Digite sua pesquisa aqui" class="searchBox">
+                    <form action="./view/pesquisa.php" method="get">
+                        <input type="text" id="busca" name="busca" placeholder="Digite sua pesquisa aqui" class="searchBox">
                         <!-- <input type="submit" value="pesquisar"> -->
                         <button type="submit" class="btnPesquisa">
                             <i class="fas fa-search"></i>

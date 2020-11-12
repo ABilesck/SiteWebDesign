@@ -157,9 +157,43 @@
           );
         }
         return $resposta;
-        
-        
       }
+
+      public function PesquisarPorNome()
+        {
+              $query = 'SELECT
+                id_perfil,
+              usuario,
+              bio,
+              senha
+              FROM '.$this->nomeTabela .
+            '  Where 
+            usuario LIKE ?';
+
+            $stmt = $this->conn->prepare($query);
+            // Bind ID
+            $stmt->bindParam(1, $this->nome);
+            // Execute query
+            $stmt->execute();
+
+            $Resultado = array();
+            $Resultado['usuarios'] = array();
+            // Set properties
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              extract($row);
+      
+              $item = array(
+                'idPerfil' => $row['id_perfil'],
+                'usuario' => $row['usuario'],
+                'bio' => $row['bio']
+              );
+      
+              array_push($Resultado['usuarios'], $item);
+            }
+
+            return $Resultado['usuarios'];
+          }
 
         public function update() {
             // Create query
