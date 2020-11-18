@@ -20,78 +20,190 @@ $posts->comunidade = $id_com;
 
 $dados = $comunidade->read_by_id();
 
-$url = 'http://localhost/sitewebdesign/view/visualizarPerfil.php?id=';
+$urlPerfil = 'http://localhost/sitewebdesign/view/visualizarPerfil.php?id=';
+$urlComunidade = 'http://localhost/sitewebdesign/view/visualizarComunidade.php?com=';
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Codificando</title>
+    <link rel="stylesheet", href="./css/mainStyle.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-    <h1>Comunidade</h1>
-    <br/>
-    <label>Nome: </label><?php echo $dados['nome'] ?>
-    <br/>
-    <label>Tema: </label><?php echo $dados['tema'] ?>
-    <br/>
-    <label>Descrição: </label><?php echo $dados['descricao'] ?>
+<?php if(isset($_SESSION['id']))
+        {
+        ?>
+            <nav>
+                <input type="checkbox" id="check">
+                <label for="check" class="checkbtn">
+                    <i class="fas fa-bars" style="font-size: 30px; line-height: 100px;"></i>
+                </label>
+                <img src="./imagem/CodificandoLogo3.png" class="logo">
+                <ul>
+                    <li>
+                    <form action="./view/pesquisa.php" method="get">
+                        <input type="text" id="busca" name="busca" placeholder="Digite sua pesquisa aqui" class="searchBox">
+                        <!-- <input type="submit" value="pesquisar"> -->
+                        <button type="submit" class="btnPesquisa">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                    </button>
+                    </form>
+                    </li>
+                    <li><a href=<?php echo $urlPerfil . $_SESSION['id'] ?>>Meu perfil</a></li>
+                    <li><a href="../index.php">Linha do tempo</a></li>
+                    <li><a href="../DAO/perfil/deslogar.php">Sair</a></li>
+                </ul>
+            </nav>
+        <?php
+        }
+        else
+        {
+        ?>
 
-    <h2>Membros da comunidade</h2>
-    <table>
-        <tr>
-            <th>Nome de usuario</th> <th>Bio</th>
-        </tr>
-
-        <?php 
-
-        $membros = $perfisDaComunidade->LerPorComunidade();
-        
-        foreach ($membros as $m) { ?>
+            <nav>
+                <input type="checkbox" id="check">
+                <label for="check" class="checkbtn">
+                    <i class="fas fa-bars" style="font-size: 30px; line-height: 100px;"></i>
+                </label>
+                <img src="./imagem/CodificandoLogo3.png" class="logo">
+                <ul>
+                    <li>
+                    <form action="./pesquisa.php" method="get">
+                        <input type="text" id="busca" name="busca" placeholder="Digite sua pesquisa aqui" class="searchBox">
+                        <!-- <input type="submit" value="pesquisar"> -->
+                        <button type="submit" class="btnPesquisa">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                    </button>
+                    </form>
+                    </li>
+                    <li><a href="./criarPerfil.php">Criar conta</a></li>
+                    <li><a href="../index.php">Entrar</a></li>
+                </ul>
+            </nav>
             
-            <tr>
-                <td>  <?php echo $m['usuario'] ?>  </td>
-                <td>  <?php echo $m['bio'] ?>  </td>
-            </tr>
+        <?php
+        }
+        ?>
 
-        <?php } ?>
-    </table>
+        <div class="fundo2">
 
-    <p>
+        <h1 class="nome"><?php echo $dados['nome'] ?></h1>
+        <h2><?php echo $dados['tema'] ?></h2>
+        <p class="bio">
+            <?php echo $dados['descricao'] ?>
+        </p>
 
-    <fieldset>
-        <legend>Novo post</legend>
-        <form action="../DAO/post/novoPost.php" method="POST">
-            <input type="text" name="texto" id="texto"/> <input type="submit" value="Postar"/>
-            <input type="hidden" id="autor" name="autor" value="<?php echo $_SESSION['Id_Perfil'] ?>">
-            <input type="hidden" id="comunidade" name="comunidade" value="<?php echo $id_com ?>">
-        </form>
-    </fieldset>
+        <?php if(isset($_SESSION['id']))
+        {
+            $perfisDaComunidade->id_Perfil = $_SESSION['id'];
+            if($perfisDaComunidade->VerificarPerfil())
+        {
 
-    <h2>Todos os posts</h2>
+        ?>
 
-    <?php
+            <details>
+                <summary style="font-size: 20px; font-weight: bold;">Membros</summary>
+                <?php 
+
+                    $membros = $perfisDaComunidade->LerPorComunidade();
+
+                    foreach ($membros as $m) { ?>
+                    <article class="post">
+                        <p class="postText">
+                            <a href = <?php echo $urlPerfil . $m['perfil'] ?> class="postLink"> 
+                            <?php echo $m['usuario'] ?> </a>
+                        </p>
+                        <p>
+                            <?php echo $m['bio'] ?>
+                        </p>
+                        <br>
+                    </article>
+                <?php } ?>
+            </details>
+
+        <div class="form">
+                <div class="titulo">
+                    <h4 style="text-align: center;">Novo post</h4>
+                </div>
+                <form method="POST", action="../DAO/post/novoPost.php">
+                    <input type="hidden" id="autor" name="autor" value="<?php echo $_SESSION['id'] ?>">
+                    <input type="hidden" id="comunidade" name="comunidade" value="<?php echo $id_com ?>">
+                    <div class="formItem">
+                        <textarea class="input message" name="texto" id="texto" cols="30" rows="5" placeholder="Escreva seu post aqui" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btnSecundario">
+                        Postar
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        <?php
+        }
+        else
+        {
+        ?>
+            <p>
+                Você não participa desta comunidade!
+            </p>
+            <br>
+            <form action="../DAO/comunidade/incluirPerfil.php" method="POST">
+                <input type="hidden" id="perfil" name="perfil" value=<?php echo $_SESSION['id']?>>
+                <input type="hidden" id="comunidade" name="comunidade" value=<?php echo $_GET['com']?>>
+                <input type="hidden" id="url" name="url" value=<?php echo $urlComunidade . $_GET['com']?>>
+
+                <button type="submit" class="btnSecundario">
+                    Participar
+                </button>
+            </form>
+            
+        <?php
+        }
+        ?>
+
+            <h3 style="padding: 5px 5px;">Todos os posts: </h3>
+
+            <?php
     
             $TodosOsPosts = $posts->PostsDaComunidade();
-            if(count($TodosOsPosts) != 0)
+            if(isset($TodosOsPosts))
             foreach ($TodosOsPosts as $p) { ?>
                 
-                <article>
-                    <fieldset>
-                    <h3><a href="<?php echo $url . $p['idAutor'] ?>"> <?php echo $p['autor'] ?> </a></h3>
-                    <br/>
-                    <?php echo $p['texto'] ?>
-                    <br/>
-                    </fieldset>
-                    
-                </article>
-                <br/>
+                <article class="post">
+                        <p class="postText">
+                            <a href = <?php echo $urlPerfil . $p["idAutor"] ?> class="postLink"> 
+                            <?php echo $p['autor'] ?> </a>
+                        </p>
+                        <br>
+                        <p>
+                            <?php echo $p["texto"] ?>
+                        </p>
+                    </article>
 
            <?php } ?>
+
+        <?php
+        }
+        else
+        {
+        ?>
+            <p>
+                <a href="#">Entre</a> para visualizar todas as informações da comunidade
+            </p>
+            
+        <?php
+        }
+        ?>
+        </div>
     
 </body>
 </html>

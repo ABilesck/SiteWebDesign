@@ -8,22 +8,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styleLogin.css">
-    <link rel="stylesheet" href="./assets/css/stylesComum.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/gif" href="./assets/img/favicon.png">
 </head>
 
 <body>
-    <form class="formLogin" method="POST", action="../DAO/perfil/logar.php" >
+    <form class="formLogin" method="POST", action="../DAO/perfil/incluirPerfil.php" >
         <div class="card">
             <div class="card-top">
                 <img class="imgLogin" src="./assets/img/CodificandoLogo.png" alt="Logo">
                 <h2 class="titulo">Codificando</h2>
-                <p>Login</p>
+                <p>Cadastro</p>
             </div>
     
             <div class="card-group">
-                <label for="usuario">Usuário</label>
+                <label for="nome">Usuário</label>
                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu usuário" required>
             </div>
     
@@ -31,24 +29,26 @@
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
             </div>
-    
-            <div class="card-group">
-                <label name="lembrarMe"><input type="checkbox" id="lembrarMe"> Lembre-me </label>
+
+            <div class="form-group card-group">
+                <label for="bio">Biografia</label>
+                <textarea class="form-control" name="bio" id="bio" rows="5"></textarea>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="termCheck" id="termCheck" required>
+                <label class="form-check-label" for="termCheck">
+                    "Eu li e concordo com os <a href="#">termos</a> de uso"
+                </label>
             </div>
     
-            <div class="botoes">
-                <input class="botao"  type="submit" value="Acessar"></input>
-                <a href="./criarPerfilTeste.html">
-                    <input class="botao"  type="button" value="Criar Conta"></input>
-                </a>
+            <div class="card-group btn">
+                <button  type="submit" value="entrar">Cadastrar</button>
+                <button  type="button" value="cadastrar"> Voltar </button>
             </div>
         </div>
     </form>
 </body>
 
-<footer class="ftr">
-    <p>This site is an academic project</p>
-    <p>Copyright © 2020 - All rights reserved - Codificando</p>
-</footer>
 </html>
 

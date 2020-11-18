@@ -101,8 +101,35 @@
             }
 
             return $ComunidadesDoPerfil['data'];
+            }
         }
-    }
+
+        public function VerificarPerfil()
+        {
+                $query = '
+                select * from tblPerfisDaComunidade  
+                Inner JOIN tblPerfil on tblPerfisDaComunidade.perfil = tblPerfil.id_perfil 
+                LEFT JOIN tblComunidade on tblPerfisDaComunidade.comunidade = tblComunidade.id_comunidade 
+                where tblPerfisDaComunidade.perfil = ?';
+
+            $stmt = $this->conn->prepare($query);
+            // Bind ID
+            $stmt->bindParam(1, $this->id_Perfil);
+            // Execute query
+            $stmt->execute();
+            
+            $num = $stmt->rowCount();
+
+            if($num > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public function LerPorComunidade()
         {
             $query = '

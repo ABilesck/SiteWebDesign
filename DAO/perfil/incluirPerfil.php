@@ -17,7 +17,7 @@
     if($usuario->create())
     {
         echo 'cadastrado com sucesso!';
-        header('location: ../../view/login.html');
+        header('location: ../../index.php');
         
     }
 

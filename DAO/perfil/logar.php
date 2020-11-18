@@ -1,5 +1,4 @@
 <?php
-
     include_once '../../config/banco.php';
     include_once '../../model/perfil.php';
 
@@ -8,7 +7,7 @@
     $perfil = $_POST['nome'];
     $senha = $_POST['senha'];
     
-    $_SESSION['nome'] = $perfil;
+    
     
     $database = new Database();
     $db = $database->connect();
@@ -19,18 +18,24 @@
     
     $dados = $usuario->login();
 
-    $_SESSION['id'] = $dados['id'];
+    
 
     print(implode(", ",$dados));
 
     if($dados['id'] != 0)
     {
-        header('Location: ../../view/visualizarPerfil.php?id=' . $dados['id']);
+        //setcookie('id', $dados['id']);
+        //setcookie('login', $dados['nome']);
+        $_SESSION['id'] = $dados['id'];
+        $_SESSION['login'] = $dados['nome'];
+        echo '<br>' . $_SESSION['id'];
+        echo '<br>' . $_SESSION['login'];
+        header('Location: ../../index.php');
     }
     else
     {
         echo '<script> alert("Credenciais estão incorretas") </script>';
-        header('location: ../../view/criarPerfilTeste.html');
+        //header('location: ../../view/criarPerfilTeste.html');
     }
     
 
